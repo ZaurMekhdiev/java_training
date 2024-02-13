@@ -12,7 +12,7 @@ import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertTha
 public class StepDefinitions {
 
     Playwright playwright = Playwright.create();
-    Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false).setSlowMo(50));  // Or 'chromium' or 'webkit'.
+    Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false).setSlowMo(50));
     // Create a new incognito browser context.
     BrowserContext context = browser.newContext();
     // Create a new page in a pristine context.
@@ -31,7 +31,7 @@ public class StepDefinitions {
 
     @Then("User click the button {string}")
     public void clickTheButton(String button) {
-        List<Locator> locators = page.locator("[value=\"" + button + "\"]").all();
+        var locators = page.locator("[value=\"" + button + "\"]").all();
         locators.get(1).click();
 
     }
@@ -39,5 +39,6 @@ public class StepDefinitions {
     @And("User see in results page {string}")
     public void assertsResults(String result){
         assertThat(page.getByText(result).first()).isVisible();
+        System.out.println('X');
     }
 }
